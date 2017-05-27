@@ -25,7 +25,7 @@ RUN useradd bench
 RUN mkdir /work \
     && mkdir /work/himeno \
     && mkdir /work/jobs \
-    && chown -R bench *
+    && chown -R bench /work
 
 USER bench
 ADD Makefile /work/

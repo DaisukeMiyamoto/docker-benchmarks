@@ -24,16 +24,16 @@ RUN useradd bench
 
 RUN mkdir /work \
     && mkdir /work/himeno \
-    && mkdir /work/jobs \
-    && chown -R bench /work
+    && mkdir /work/jobs
 
-USER bench
 ADD Makefile /work/
 ADD run.sh /work/
 ADD himeno/* /work/himeno/
 ADD jobs/* /work/jobs/
 
+RUN chown -R bench /work
 
+USER bench
 WORKDIR /work
 RUN make \
     && chmod +x run.sh

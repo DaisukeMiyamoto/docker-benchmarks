@@ -21,12 +21,13 @@ RUN apt-get update \
 
 
 RUN useradd bench
-USER bench
 
 RUN mkdir /work \
     && mkdir /work/himeno \
-    && mkdir /work/jobs
+    && mkdir /work/jobs \
+    && chown -R bench *
 
+USER bench
 ADD Makefile /work/
 ADD run.sh /work/
 ADD himeno/* /work/himeno/

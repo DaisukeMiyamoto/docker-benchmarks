@@ -1,4 +1,8 @@
-# docker-benchmarks
+docker-benchmarks
+---
+
+[![Build Status](https://travis-ci.org/DaisukeMiyamoto/docker-benchmarks.svg?branch=master)](https://travis-ci.org/DaisukeMiyamoto/docker-benchmarks)
+
 benchmark sets in a docker image
 
 ## Usage

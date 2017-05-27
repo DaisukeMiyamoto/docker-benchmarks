@@ -1,33 +1,12 @@
 # Makefile
 
-CONDITION_L_1x1x1 = -DMX0=257 -DMY0=257 -DMZ0=513 -DMIMAX=257 -DMJMAX=257 -DMKMAX=513 -DNDX0=1 -DNDY0=1 -DNDZ0=1
-CONDITION_L_2x2x1 = -DMX0=257 -DMY0=257 -DMZ0=513 -DMIMAX=131 -DMJMAX=131 -DMKMAX=513 -DNDX0=2 -DNDY0=2 -DNDZ0=1
-CONDITION_L_2x2x2 = -DMX0=257 -DMY0=257 -DMZ0=513 -DMIMAX=131 -DMJMAX=131 -DMKMAX=257 -DNDX0=2 -DNDY0=2 -DNDZ0=2
-CONDITION_XL_2x2x2 = -DMX0=513 -DMY0=513 -DMZ0=1025 -DMIMAX=259 -DMJMAX=259 -DMKMAX=515 -DNDX0=2 -DNDY0=2 -DNDZ0=2
+SUBDIRS := himeno
+.PHONY: all $(SUBDIRS)
 
-CC = mpicc
-CFLAGS = -O3
+all: $(SUBDIRS)
 
-SOURCE = himenoBMTxps.c
-PROGS = bmt_L_1x1x1.out bmt_L_2x2x1.out bmt_L_2x2x2.out bmt_XL_2x2x2.out
+$(SUBDIRS):
+	$(MAKE) -C $@
 
-
-all : ${PROGS}
-
-bmt_L_1x1x1.out: ${SOURCE}
-	${CC} -o $@ $< ${CFLAGS} ${CONDITION_L_1x1x1}
-
-bmt_L_2x2x1.out: ${SOURCE}
-	${CC} -o $@ $< ${CFLAGS} ${CONDITION_L_2x2x1}
-
-bmt_L_2x2x2.out: ${SOURCE}
-	${CC} -o $@ $< ${CFLAGS} ${CONDITION_L_2x2x2}
-
-bmt_XL_2x2x2.out: ${SOURCE}
-	${CC} -o $@ $< ${CFLAGS} ${CONDITION_XL_2x2x2}
-
-
-clean :
-	rm -f ${PROGS} ${OBJS} core
-
-
+clean:
+	$(MAKE) -C himeno clean

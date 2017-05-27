@@ -5,11 +5,6 @@ MAINTAINER Daisuke Miyamoto <miyamoto@brain.imi.i.u-tokyo.ac.jp>
 ARG CFLAGS="-O3"
 ARG CXXFLAGS="-O3"
 
-RUN mkdir /work
-WORKDIR /work
-COPY himenoBMTxps.c /work
-COPY Makefile /work
-
 RUN apt-get update \
     && apt-get install -y \
         locales \
@@ -21,13 +16,26 @@ RUN apt-get update \
         openmpi-common \
         libopenmpi-dev \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-    && make \
-    && apt-get purge -y --auto-remove \
-        gcc \
-        g++ \
-        build-essential \
-        libopenmpi-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoclean
 
-CMD ./bmt_L_1x1x1.out
+
+RUN useradd bench
+USER bench
+
+RUN mkdir /work \
+    && mkdir /work/himeno \
+    && mkdir /work/jobs
+
+ADD Makefile /work/
+ADD run.sh /work/
+ADD himeno/* /work/himeno/
+ADD jobs/* /work/jobs/
+
+
+WORKDIR /work
+RUN make \
+    && chmod +x run.sh
+
+
+#CMD ./bmt_L_1x1x1.out

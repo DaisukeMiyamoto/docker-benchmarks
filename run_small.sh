@@ -6,10 +6,12 @@ FILENAME="$(hostname -s)_ver${VERSION}.log"
 JOBS=(
     "himeno_local_M_single.sh"
     "stream_local_single.sh"
+    "fio_tmp.sh"
 )
 FILTER=(
     "grep measured"
     "grep -A 4 Function"
+    "grep -A 1 jobs="
 )
 
 TEE="tee -a ${FILENAME}"

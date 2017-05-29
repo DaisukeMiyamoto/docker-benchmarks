@@ -42,6 +42,7 @@ USER bench
 WORKDIR /work
 RUN make \
     && chmod +x run.sh
+    && chmod +x run_small.sh
 
 
 #CMD ./bmt_L_1x1x1.out

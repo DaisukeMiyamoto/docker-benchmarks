@@ -25,6 +25,7 @@ RUN useradd bench
 RUN mkdir /work \
     && mkdir /work/himeno \
     && mkdir /work/stream \
+    && mkdir /work/fio \
     && mkdir /work/jobs
 
 ADD Makefile /work/
@@ -32,6 +33,7 @@ ADD run.sh /work/
 ADD run_small.sh /work/
 ADD himeno/* /work/himeno/
 ADD stream/* /work/stream/
+ADD fio/* /work/fio/
 ADD https://www.cs.virginia.edu/stream/FTP/Code/stream.c /work/stream/
 ADD https://www.cs.virginia.edu/stream/FTP/Code/Versions/stream_mpi.c /work/stream/
 ADD jobs/* /work/jobs/
@@ -41,7 +43,7 @@ RUN chown -R bench /work
 USER bench
 WORKDIR /work
 RUN make \
-    && chmod +x run.sh
+    && chmod +x run.sh \
     && chmod +x run_small.sh
 
 

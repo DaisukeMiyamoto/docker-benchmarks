@@ -11,6 +11,7 @@ JOBS=(
     "stream_local_single.sh"
     "stream_local_mpi4.sh"
     "fio_tmp.sh"
+    "fio_work.sh"
 #    "hpl_local.sh"
 )
 FILTER=(
@@ -20,6 +21,7 @@ FILTER=(
     "grep measured"
     "grep -A 4 Function"
     "grep -A 4 Function"
+    "grep -A 1 jobs="
     "grep -A 1 jobs="
 #    "grep -A 17 Summary"
 )

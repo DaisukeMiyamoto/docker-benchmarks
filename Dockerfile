@@ -24,11 +24,15 @@ RUN useradd bench
 
 RUN mkdir /work \
     && mkdir /work/himeno \
+    && mkdir /work/stream \
     && mkdir /work/jobs
 
 ADD Makefile /work/
 ADD run.sh /work/
 ADD himeno/* /work/himeno/
+ADD stream/* /work/stream/
+ADD https://www.cs.virginia.edu/stream/FTP/Code/stream.c /work/stream/
+ADD https://www.cs.virginia.edu/stream/FTP/Code/Versions/stream_mpi.c /work/stream/
 ADD jobs/* /work/jobs/
 
 RUN chown -R bench /work

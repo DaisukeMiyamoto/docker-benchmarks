@@ -1,6 +1,6 @@
 # Makefile
 
-SUBDIRS := himeno stream
+SUBDIRS := himeno stream fio
 .PHONY: all $(SUBDIRS)
 
 all: $(SUBDIRS)
@@ -11,3 +11,5 @@ $(SUBDIRS):
 clean:
 	$(MAKE) -C himeno clean
 	$(MAKE) -C stream clean
+	$(MAKE) -C fio clean
+

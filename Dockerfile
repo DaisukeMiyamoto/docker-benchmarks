@@ -29,6 +29,7 @@ RUN mkdir /work \
 
 ADD Makefile /work/
 ADD run.sh /work/
+ADD run_small.sh /work/
 ADD himeno/* /work/himeno/
 ADD stream/* /work/stream/
 ADD https://www.cs.virginia.edu/stream/FTP/Code/stream.c /work/stream/

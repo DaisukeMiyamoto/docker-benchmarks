@@ -7,7 +7,7 @@ before_install:
   - docker build -t benchmarks .
 
 script:
-  - docker run benchmarks ./jobs/himeno_local_M_single.sh
+  - docker run benchmarks ./run_small.sh
 
 notifications:
   slack: microbrain:dHXYnMz4KBlHXHLs64ju5h5Y

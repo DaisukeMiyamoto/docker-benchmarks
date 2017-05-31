@@ -19,12 +19,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoclean
 
-RUN useradd bench\
+RUN useradd bench \
     && mkdir /work
-#    && mkdir /work/himeno \
-#    && mkdir /work/stream \
-#    && mkdir /work/fio \
-#    && mkdir /work/jobs
 
 COPY Makefile /work/
 COPY run.sh /work/
@@ -33,8 +29,6 @@ COPY himeno /work/himeno
 COPY stream /work/stream
 COPY fio /work/fio
 COPY unixbench /work/unixbench
-#ADD https://www.cs.virginia.edu/stream/FTP/Code/stream.c /work/stream/
-#ADD https://www.cs.virginia.edu/stream/FTP/Code/Versions/stream_mpi.c /work/stream/
 COPY jobs /work/jobs
 
 RUN chown -R bench /work
@@ -42,8 +36,8 @@ RUN chown -R bench /work
 USER bench
 WORKDIR /work
 RUN make \
+    && chmod +x jobs/* \
     && chmod +x run.sh \
     && chmod +x run_small.sh
 
 
-#CMD ./bmt_L_1x1x1.out

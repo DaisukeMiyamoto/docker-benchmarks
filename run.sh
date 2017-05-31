@@ -13,7 +13,7 @@ JOBS=(
     "fio_tmp.sh"
     "fio_work.sh"
 #    "hpl_local.sh"
-    "unixbench.sh"
+#    "unixbench.sh"
 )
 FILTER=(
     "grep measured"
@@ -25,7 +25,7 @@ FILTER=(
     "grep -A 1 jobs="
     "grep -A 1 jobs="
 #    "grep -A 17 Summary"
-    "grep -A 100 'BYTE UNIX Benchmarks'"
+#    "grep -A 100 'BYTE UNIX Benchmarks'"
 )
 
 TEE="tee -a ${FILENAME}"

@@ -9,17 +9,13 @@ ICC_CFLAGS = -O3 -xCORE-AVX2 -ffreestanding -qopenmp
 
 all: stream.out stream_mpi.out
 
-stream.out: stream.c
+stream.out:
     wget https://www.cs.virginia.edu/stream/FTP/Code/stream.c
 	${CC} ${CFLAGS} ${CONDITION} $^ -o $@
 
-stream_mpi.out: stream_mpi.c
+stream_mpi.out:
     wget https://www.cs.virginia.edu/stream/FTP/Code/Versions/stream_mpi.c
 	${CC} ${CFLAGS} ${CONDITION_MPI} $^ -o $@
-
-stream.c:
-
-stream_mpi.c:
 
 clean:
 	rm -f *.out *.o

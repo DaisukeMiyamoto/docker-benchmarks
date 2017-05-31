@@ -19,24 +19,23 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoclean
 
+RUN useradd bench\
+    && mkdir /work
+#    && mkdir /work/himeno \
+#    && mkdir /work/stream \
+#    && mkdir /work/fio \
+#    && mkdir /work/jobs
 
-RUN useradd bench
-
-RUN mkdir /work \
-    && mkdir /work/himeno \
-    && mkdir /work/stream \
-    && mkdir /work/fio \
-    && mkdir /work/jobs
-
-ADD Makefile /work/
-ADD run.sh /work/
-ADD run_small.sh /work/
-ADD himeno/* /work/himeno/
-ADD stream/* /work/stream/
-ADD fio/* /work/fio/
-ADD https://www.cs.virginia.edu/stream/FTP/Code/stream.c /work/stream/
-ADD https://www.cs.virginia.edu/stream/FTP/Code/Versions/stream_mpi.c /work/stream/
-ADD jobs/* /work/jobs/
+COPY Makefile /work/
+COPY run.sh /work/
+COPY run_small.sh /work/
+COPY himeno /work/himeno
+COPY stream /work/stream
+COPY fio /work/fio
+COPY unixbench /work/unixbench
+#ADD https://www.cs.virginia.edu/stream/FTP/Code/stream.c /work/stream/
+#ADD https://www.cs.virginia.edu/stream/FTP/Code/Versions/stream_mpi.c /work/stream/
+COPY jobs /work/jobs
 
 RUN chown -R bench /work
 

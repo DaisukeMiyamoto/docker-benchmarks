@@ -1,7 +1,7 @@
 #Makefile
 
 CONDITION = -DSTREAM_ARRAY_SIZE=80000000 -DNTIMES=20
-CONDITION_MPI = -DSTREAM_ARRAY_SIZE=320000000 -DNTIMES=20
+CONDITION_MPI = -DSTREAM_ARRAY_SIZE=160000000 -DNTIMES=20
 
 CC = mpicc
 CFLAGS = -O3
@@ -15,5 +15,11 @@ stream.out: stream.c
 stream_mpi.out: stream_mpi.c
 	${CC} ${CFLAGS} ${CONDITION_MPI} $^ -o $@
 
+stream.c:
+	wget https://www.cs.virginia.edu/stream/FTP/Code/stream.c
+
+stream_mpi.c:
+	wget https://www.cs.virginia.edu/stream/FTP/Code/Versions/stream_mpi.c
+
 clean:
-	rm -f *.out *.o
+	rm -f *.out *.c

@@ -9,7 +9,10 @@ all: unixbench
 unixbench:
 	wget $(URL)$(FILENAME)
 	tar xvzf $(FILENAME)
-	cd $(DIRNAME); make
+	cd $(DIRNAME); \
+	make; \
+	wget http://storage.googleapis.com/google-code-attachments/byte-unixbench/issue-4/comment-1/fix-limitation.patch; \
+	patch Run fix-limitation.patch
 
 clean:
 	rm -rf $(FILENAME) $(DIRNAME)
